@@ -52,4 +52,13 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
