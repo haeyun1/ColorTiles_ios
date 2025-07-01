@@ -46,6 +46,9 @@ public class TileManager : MonoBehaviour
                 cells.RemoveAt(index);
 
                 Vector3 pos = grid.CellToWorld(randomCell);
+                
+                pos.z = -1;
+                
 
                 GameObject newTile = Instantiate(tile, pos, Quaternion.identity, transform);
                 newTile.name = $"Tile_{i}_({randomCell.x},{randomCell.y})";
