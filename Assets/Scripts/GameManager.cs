@@ -5,11 +5,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public Slider timeBar;
     public Canvas start;
     public Canvas inGame;
     public Canvas finishGame;
-    public GameObject palette;
+    public bool isFinish = false;
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private float time = 120f;
 
@@ -17,8 +25,9 @@ public class GameManager : MonoBehaviour
 
     public void Timer()
     {
-	StopAllCoroutines();
-	curTime = time;
+        StopAllCoroutines();
+        curTime = time;
+        isFinish = false;
         StartCoroutine(OrderTimer());
     }
 
@@ -36,6 +45,7 @@ public class GameManager : MonoBehaviour
                 start.gameObject.SetActive(false);
                 inGame.gameObject.SetActive(false);
                 finishGame.gameObject.SetActive(true);
+                isFinish = true;
                 break;
             }
 
