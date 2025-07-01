@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public void Timer()
     {
+	StopAllCoroutines();
+	curTime = time;
         StartCoroutine(OrderTimer());
     }
 
@@ -27,7 +29,6 @@ public class GameManager : MonoBehaviour
         {
             curTime -= Time.deltaTime;
             timeBar.value = curTime / time;
-            yield return null;
 
             if (curTime <= 0)
             {
@@ -35,8 +36,10 @@ public class GameManager : MonoBehaviour
                 start.gameObject.SetActive(false);
                 inGame.gameObject.SetActive(false);
                 finishGame.gameObject.SetActive(true);
-                yield break;
+                break;
             }
+
+            yield return null;
         }
     }
 }
