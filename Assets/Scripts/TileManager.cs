@@ -13,13 +13,7 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Vector2Int size = new Vector2Int(23, 15);
     [SerializeField] private int objectsPerColor = 20;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GenerateTiles();
-    }
-
-    void GenerateTiles()
+    public void GenerateTiles()
     {
         cells = new List<Vector3Int>();
         for (int x = 0; x < size.x; x++)
@@ -46,13 +40,27 @@ public class TileManager : MonoBehaviour
                 cells.RemoveAt(index);
 
                 Vector3 pos = grid.CellToWorld(randomCell);
-                
+
                 pos.z = -1;
-                
+
 
                 GameObject newTile = Instantiate(tile, pos, Quaternion.identity, transform);
                 newTile.name = $"Tile_{i}_({randomCell.x},{randomCell.y})";
             }
+        }
+    }
+
+    public void RemoveTiles()
+    {
+        List<Transform> children = new List<Transform>();
+        foreach (Transform child in transform) // 이 'transform'은 현재 오브젝트의 Transform입니다.
+        {
+            children.Add(child);
+        }
+
+        foreach (Transform child in children)
+        {
+            Destroy(child.gameObject); // 이 'child.gameObject'는 자식 오브젝트입니다.
         }
     }
 }

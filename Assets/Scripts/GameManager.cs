@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Canvas finishGame;
     public GameObject palette;
 
-    private float time = 30;
+    private float time = 120f;
 
     private float curTime;
 
