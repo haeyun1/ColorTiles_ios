@@ -1,0 +1,11 @@
+#HelpBtn {
+    left: 2.5%;
+}
+
+#QuitBtn {
+    right: 2.5%;
+}
+
+#Title {
+    font-size: 150px; 
+}

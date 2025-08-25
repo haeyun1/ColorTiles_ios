@@ -11,11 +11,20 @@ public class InGame : MonoBehaviour, IUIState
     Label score;
 
     float maxTime;
+
+    void Awake()
+    {
+        uI = gameObject.GetComponent<UIDocument>();
+    }
+
+    void OnEnable()
+    {
+        UIManager.instance.ApplyPlatformStyles(uI);
+    }
+
     public void Enter()
     {
         gameObject.SetActive(true);
-        uI = gameObject.GetComponent<UIDocument>();
-
         var root = uI.rootVisualElement;
         homeBtn = root.Q<Button>();
         homeBtn.clicked += OnClick;

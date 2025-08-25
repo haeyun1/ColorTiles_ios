@@ -8,11 +8,20 @@ public class End : MonoBehaviour, IUIState
     private UIDocument uI;
     Label score;
     Button homeBtn;
+
+    void Awake()
+    {
+        uI = gameObject.GetComponent<UIDocument>();
+    }
+
+    void OnEnable()
+    {
+        UIManager.instance.ApplyPlatformStyles(uI);
+    }
+
     public void Enter()
     {
         gameObject.SetActive(true);
-        uI = gameObject.GetComponent<UIDocument>();
-
         var root = uI.rootVisualElement;
         score = root.Q<Label>("Score");
         score.text = GameManager.instance.GetScore();

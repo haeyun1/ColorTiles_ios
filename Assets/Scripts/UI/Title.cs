@@ -9,10 +9,21 @@ public class Title : MonoBehaviour, IUIState
     private UIDocument uI;
     List<Button> btns = new List<Button>();
     VisualElement popUp;
+
+    void Awake()
+    {
+        uI = gameObject.GetComponent<UIDocument>();
+    }
+
+    void OnEnable()
+    {
+        UIManager.instance.ApplyPlatformStyles(uI);
+    }
+
     public void Enter()
     {
         gameObject.SetActive(true);
-        uI = gameObject.GetComponent<UIDocument>();
+
         var root = uI.rootVisualElement;
         btns.AddRange(root.Q<VisualElement>().Query<Button>().ToList());
         popUp = root.Q<VisualElement>("Overlay");

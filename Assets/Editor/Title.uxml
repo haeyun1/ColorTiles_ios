@@ -1,22 +1,22 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <Style src="project://database/Assets/Editor/Common.uss?fileID=7433441132597879392&amp;guid=61aaf5d390c5e4ca1a73ce9007310999&amp;type=3#Common" />
+    <Style src="project://database/Assets/Resources/Styles/Common.uss?fileID=7433441132597879392&amp;guid=61aaf5d390c5e4ca1a73ce9007310999&amp;type=3#Common" />
     <ui:VisualElement name="Root" class="root">
-        <ui:Label tabindex="-1" text="Color Tiles" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="font-size: 200%; top: -15%;" />
+        <ui:Label tabindex="-1" text="Color Tiles" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="top: -15%;" />
         <ui:VisualElement name="Btns" class="group">
-            <ui:Button text="play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayBtn" class="text-btn" style="top: 250%;" />
-            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_announcement&apos;); bottom: 400%; left: -470%; position: relative;" />
-            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_close&apos;); bottom: 400%; left: 470%; position: relative;" />
+            <ui:Button text="play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayBtn" class="text-btn" style="top: 65%;" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_announcement&apos;); top: 5%;" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_close&apos;); top: 5%;" />
         </ui:VisualElement>
         <ui:VisualElement name="Overlay" style="background-color: rgba(0, 0, 0, 0.39); position: absolute; width: 100%; height: 100%; align-items: center; align-self: stretch; justify-content: center; transform-origin: center; top: 0;">
             <ui:VisualElement name="PopUp" class="pop-up">
-                <ui:VisualElement name="Imgs" class="group" style="flex-grow: 0;">
-                    <ui:VisualElement name="HelpImg" class="group" style="background-image: url(&quot;project://database/Assets/Images/Help.png?fileID=2800000&amp;guid=4568f70280f4946b682a7a096013225e&amp;type=3#Help&quot;); width: 860px; height: 294px; top: 78%; position: relative;" />
-                    <ui:VisualElement name="Highlight" style="flex-grow: 1; background-color: rgba(255, 229, 0, 0.78); position: absolute; width: 929px; height: 45px; align-items: center; align-self: center; top: 109px; right: -28px;" />
-                    <ui:VisualElement name="Highlight" style="flex-grow: 1; background-color: rgba(255, 229, 0, 0.78); position: absolute; width: 410px; height: 45px; align-items: center; align-self: center; top: 7px; right: 44px;" />
+                <ui:VisualElement name="Imgs" class="group">
+                    <ui:VisualElement name="HelpImg" class="group" style="background-image: url(&quot;project://database/Assets/Images/Help.png?fileID=2800000&amp;guid=4568f70280f4946b682a7a096013225e&amp;type=3#Help&quot;);" />
+                    <ui:VisualElement name="Highlight1" style="background-color: rgba(255, 229, 0, 0.78); align-items: center; align-self: center; position: absolute;" />
+                    <ui:VisualElement name="Highlight2" style="background-color: rgba(255, 229, 0, 0.78); align-items: center; align-self: center; position: absolute;" />
                 </ui:VisualElement>
-                <ui:Label tabindex="-1" text="Click on a blank space.&#10;If the color matches the nearest neighboring tiles,&#10;vertically or horizontally,&#10;from the clicked space, you get the matching tiles." parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 50%; color: rgb(0, 0, 0);" />
-                <ui:Label tabindex="-1" text="You get 1 point for each tile.&#10;You have 120 seconds to play.&#10;Each incorrect click reduces your time by 10 seconds." parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 50%; color: rgb(0, 0, 0);" />
-                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_minus&apos;); bottom: 86%; left: 93%; position: absolute;" />
+                <ui:Label tabindex="-1" text="Click on a blank space.&#10;If the color matches the nearest neighboring tiles,&#10;vertically or horizontally,&#10;from the clicked space, you get the matching tiles." parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpText" />
+                <ui:Label tabindex="-1" text="You get 1 point for each tile.&#10;You have 120 seconds to play.&#10;Each incorrect click reduces your time by 10 seconds." parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpText" />
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_minus&apos;);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

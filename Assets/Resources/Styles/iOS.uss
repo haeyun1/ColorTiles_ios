@@ -1,0 +1,42 @@
+#HelpBtn {
+    left: 10%;
+}
+
+#QuitBtn {
+    right: 10%;
+}
+
+#Title {
+    font-size: 200px;
+}
+
+#HelpImg {
+    width: 860px;
+    height: 294px;
+    top: 38%;
+    left: 31%;
+}
+
+#Highlight1 {
+    width: 929px;
+    height: 45px;
+    top: 26%;
+    right: 29.5%;
+}
+
+#Highlight2 {
+    width: 410px;
+    height: 45px;
+    top: 16.25%;
+    right: 32.5%;
+}
+
+#HelpText {
+    font-size: 50px;
+    color: black;
+}
+
+#BackBtn {
+    bottom: 86%; 
+    left: 93%;
+}
