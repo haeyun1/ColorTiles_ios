@@ -29,7 +29,7 @@ public class InGame : MonoBehaviour, IUIState
         homeBtn = root.Q<Button>();
         homeBtn.clicked += OnClick;
         time = root.Q<ProgressBar>();
-        score = root.Q<Label>("Score");
+        score = root.Q<Label>("InGameScore");
 
         GameManager.instance.ResetScore();
         maxTime = GameManager.instance.GetMaxTime();
