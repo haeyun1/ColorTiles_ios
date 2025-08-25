@@ -10,12 +10,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     List<UIDocument> uIDocuments;
 
+    [SerializeField]
+    GameObject tile;
+
     private IUIState state;
 
     public enum State
     {
         Title,
-        Help,
         InGame,
         End
     }
@@ -49,5 +51,10 @@ public class UIManager : MonoBehaviour
     public void Hide(VisualElement element)
     {
         element.AddToClassList("hidden");
+    }
+
+    public void ShowTile(bool isActive)
+    {
+        tile.SetActive(isActive);
     }
 }
