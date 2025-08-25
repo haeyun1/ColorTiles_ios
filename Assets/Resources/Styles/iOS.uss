@@ -55,6 +55,16 @@
     height: 0;
 }
 
+#HomeBtn {
+    width: 250px;
+    height: 150px;
+    border-radius: 80px;
+    font-size: 65px;
+    position: relative;
+    left: 0;
+    top: 25%;
+}
+
 #InGameScoreText {
     font-size: 75px;
     left: 85%;
@@ -69,7 +79,7 @@
     right: 8%;
 }
 
-#HomeBtn {
+#InGameHomeBtn {
     top: 83%; 
     right: 7%; 
     width: 225px; 

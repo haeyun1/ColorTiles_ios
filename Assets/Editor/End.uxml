@@ -3,6 +3,6 @@
     <ui:VisualElement name="Root" class="root" style="background-color: rgba(0, 0, 0, 0.78);">
         <ui:Label tabindex="-1" text="Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ScoreText" />
         <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" />
-        <ui:Button text="home" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeBtn" enable-rich-text="true" class="text-btn" style="top: 63%;" />
+        <ui:Button text="home" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeBtn" enable-rich-text="true" class="text-btn" />
     </ui:VisualElement>
 </ui:UXML>

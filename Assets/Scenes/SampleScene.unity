@@ -9867,7 +9867,6 @@ MonoBehaviour:
   score: 0
   maxTime: 120
   curTime: 0
-  isFinish: 1
 --- !u!4 &1425145477
 Transform:
   m_ObjectHideFlags: 0

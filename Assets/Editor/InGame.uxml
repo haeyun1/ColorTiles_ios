@@ -3,7 +3,7 @@
     <ui:VisualElement name="Root" class="root">
         <ui:Label tabindex="-1" text="Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InGameScoreText" style="top: 6%; position: absolute;" />
         <ui:Label tabindex="-1" text="200" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InGameScore" style="top: 13%; position: absolute; width: 0; height: 0;" />
-        <ui:Button text="home" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeBtn" enable-rich-text="true" class="text-btn" />
+        <ui:Button text="home" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InGameHomeBtn" enable-rich-text="true" class="text-btn" />
         <ui:ProgressBar value="0.5" high-value="1" name="Time" />
     </ui:VisualElement>
 </ui:UXML>
