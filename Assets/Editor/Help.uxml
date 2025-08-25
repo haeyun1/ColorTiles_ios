@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/Common.uss?fileID=7433441132597879392&amp;guid=61aaf5d390c5e4ca1a73ce9007310999&amp;type=3#Common" />
+    <ui:VisualElement name="Root" class="root" style="background-color: rgba(0, 0, 0, 0.39);">
+        <ui:VisualElement name="PopUp" class="pop-up">
+            <ui:VisualElement name="Imgs" class="group" style="flex-grow: 0;">
+                <ui:VisualElement name="HelpImg" class="group" style="background-image: url(&quot;project://database/Assets/Images/Help.png?fileID=2800000&amp;guid=4568f70280f4946b682a7a096013225e&amp;type=3#Help&quot;); width: 860px; height: 294px; top: 78%; position: relative;" />
+                <ui:VisualElement name="Highlight" style="flex-grow: 1; background-color: rgba(255, 229, 0, 0.78); position: absolute; width: 929px; height: 45px; align-items: center; align-self: center; top: 109px; right: -28px;" />
+                <ui:VisualElement name="Highlight" style="flex-grow: 1; background-color: rgba(255, 229, 0, 0.78); position: absolute; width: 410px; height: 45px; align-items: center; align-self: center; top: 7px; right: 44px;" />
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Click on a blank space.&#10;If the color matches the nearest neighboring tiles,&#10;vertically or horizontally,&#10;from the clicked space, you get the matching tiles." parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 50%; color: rgb(0, 0, 0);" />
+            <ui:Label tabindex="-1" text="You get 1 point for each tile.&#10;You have 120 seconds to play.&#10;Each incorrect click reduces your time by 10 seconds." parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 50%; color: rgb(0, 0, 0);" />
+            <ui:VisualElement name="Btns" class="group">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_minus&apos;); bottom: 120%; left: 850%; position: relative;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

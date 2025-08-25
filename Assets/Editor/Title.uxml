@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/Common.uss?fileID=7433441132597879392&amp;guid=61aaf5d390c5e4ca1a73ce9007310999&amp;type=3#Common" />
+    <ui:VisualElement name="Root" class="root">
+        <ui:Label tabindex="-1" text="Color Tiles" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="font-size: 200%; top: -15%;" />
+        <ui:VisualElement name="Btns" class="group">
+            <ui:Button text="play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayBtn" class="text-btn" style="top: 250%;" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_announcement&apos;); bottom: 400%; left: -470%; position: relative;" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitBtn" class="img-btn" style="background-image: resource(&apos;Icons/Border/ic_close&apos;); bottom: 400%; left: 470%; position: relative;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

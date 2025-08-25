@@ -1,0 +1,79 @@
+.root {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-around;
+}
+
+Label {
+    -unity-font-definition: initial;
+    -unity-font: resource('Fonts/Electronic Highway Sign');
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+    color: red;
+}
+
+Button.text-btn {
+    -unity-font-definition: initial;
+    -unity-font: resource('Fonts/Electronic Highway Sign');
+    color: red;
+    border-radius: 70px;
+    border-width: 15px;
+    background-color: white;
+    border-color: black;
+    padding-bottom: 0;
+    width: 400px;
+    height: 150px;
+    font-size: 100px;
+    -unity-font-style: bold;
+    position: absolute;
+}
+
+Button.img-btn {
+    background-color: transparent;
+    border-width: 0;
+    width: 110px;
+    height: 110px;
+    position: absolute;
+}
+
+.group {
+    position: absolute;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 0;
+}
+
+.pop-up {
+    width: 80%;
+    height: 80%;
+    flex-grow: 0;
+    background-color: white;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+ProgressBar {
+    rotate: -90deg;
+    align-self: flex-start;
+    right: 10%;
+    width: 38%;
+    background-color: rgba(0, 0, 0, 0);
+    /* margin: 0px; */
+}
+
+.unity-progress-bar__container {
+    max-height: 100px;
+}
+
+.unity-progress-bar__background {
+    background-color: #EDEDED;
+    border-width: 0px;
+}
+
+
+.unity-progress-bar__progress {
+    background-color: red;
+    margin: 0px;
+}

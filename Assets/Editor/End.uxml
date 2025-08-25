@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/Common.uss?fileID=7433441132597879392&amp;guid=61aaf5d390c5e4ca1a73ce9007310999&amp;type=3#Common" />
+    <ui:VisualElement name="Root" class="root" style="background-color: rgba(0, 0, 0, 0.78);">
+        <ui:Label tabindex="-1" text="Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Text" style="font-size: 150%; top: 25%; position: absolute;" />
+        <ui:Label tabindex="-1" text="200" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Score" style="font-size: 150%; top: 40%; position: absolute;" />
+        <ui:Button text="home" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeBtn" enable-rich-text="true" class="text-btn" style="top: 63%;" />
+    </ui:VisualElement>
+</ui:UXML>
