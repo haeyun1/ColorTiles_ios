@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject tile;
 
-    [SerializeField] bool iOS = true; // 에디터 테스트용
+    [SerializeField] bool iOS; // 에디터 테스트용
 
     private IUIState state;
 
@@ -46,23 +46,33 @@ public class UIManager : MonoBehaviour
         if (baseStyle != null)
             root.styleSheets.Add(baseStyle);
 
-        // 2) 플랫폼별 스타일
-        if (Application.platform == RuntimePlatform.IPhonePlayer ||
-            (Application.isEditor && iOS))
-        {
-            var iosStyle = Resources.Load<StyleSheet>("Styles/iOS");
-            if (iosStyle != null)
-                root.styleSheets.Add(iosStyle);
-        }
-        else if (Application.platform == RuntimePlatform.WindowsPlayer ||
-                 Application.platform == RuntimePlatform.OSXPlayer ||
-                 (Application.isEditor && !iOS))
-        {
-            var pcStyle = Resources.Load<StyleSheet>("Styles/PC");
-            if (pcStyle != null)
-                root.styleSheets.Add(pcStyle);
-        }
+        // 2) 플랫폼별 스타일 (런타임 시점)
+        // if (Application.platform == RuntimePlatform.IPhonePlayer ||
+        //     (Application.isEditor && iOS))
+        // {
+        //     var iosStyle = Resources.Load<StyleSheet>("Styles/iOS");
+        //     if (iosStyle != null)
+        //         root.styleSheets.Add(iosStyle);
+        // }
+        // else if (Application.platform == RuntimePlatform.WindowsPlayer ||
+        //          Application.platform == RuntimePlatform.OSXPlayer ||
+        //          (Application.isEditor && !iOS))
+        // {
+        //     var pcStyle = Resources.Load<StyleSheet>("Styles/PC");
+        //     if (pcStyle != null)
+        //         root.styleSheets.Add(pcStyle);
+        // }
 
+        // 2) 플랫폼별 스타일 (컴파일 시점)
+#if UNITY_IOS
+        var iosStyle = Resources.Load<StyleSheet>("Styles/iOS");
+        if (iosStyle != null)
+            root.styleSheets.Add(iosStyle);
+#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
+        var pcStyle = Resources.Load<StyleSheet>("Styles/PC");
+        if (pcStyle != null)
+            root.styleSheets.Add(pcStyle);
+#endif
     }
 
     public void SetState(State state)

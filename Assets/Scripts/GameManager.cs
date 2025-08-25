@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float curTime;
 
     private Coroutine coroutine;
-    public bool isFinish;
 
     void Awake()
     {
@@ -26,7 +25,6 @@ public class GameManager : MonoBehaviour
     {
         StopAllCoroutines();
         curTime = maxTime;
-        isFinish = false;
         coroutine = StartCoroutine(OrderTimer());
     }
 
@@ -39,6 +37,7 @@ public class GameManager : MonoBehaviour
     IEnumerator OrderTimer()
     {
         curTime = maxTime;
+
         while (curTime > 0)
         {
             curTime -= Time.deltaTime;
@@ -46,7 +45,6 @@ public class GameManager : MonoBehaviour
         }
 
         curTime = 0;
-        isFinish = true;
         UIManager.instance.SetState(UIManager.State.End);
     }
 

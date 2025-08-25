@@ -19,7 +19,7 @@ public class GridDetector : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GameManager.instance.isFinish == false)
+        if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseScreenPos = Input.mousePosition;
             mouseScreenPos.z = Mathf.Abs(mainCamera.transform.position.z + detectionZDepth);

@@ -10,6 +10,37 @@
     font-size: 150px;
 }
 
+#HelpImg {
+    width: 820px;
+    height: 264px;
+    top: 36%;
+    left: 24%;
+}
+
+#Highlight1 {
+    width: 650px;
+    height: 35px;
+    top: 26%;
+    right: 29.25%;
+}
+
+#Highlight2 {
+    width: 410px;
+    height: 35px;
+    top: 17.5%;
+    right: 32.25%;
+}
+
+#HelpText {
+    font-size: 35px;
+    color: black;
+}
+
+#BackBtn {
+    bottom: 86%;
+    left: 90%;
+}
+
 #ScoreText {
     font-size: 150px;
     top: 25%;
@@ -40,11 +71,11 @@
 }
 
 #HomeBtn {
-    top: 87%; 
-    right: 2%; 
-    width: 150px; 
-    height: 100px; 
-    border-radius: 50px; 
+    top: 87%;
+    right: 2%;
+    width: 150px;
+    height: 100px;
+    border-radius: 50px;
     border-width: 10px;
     font-size: 40px;
 }
