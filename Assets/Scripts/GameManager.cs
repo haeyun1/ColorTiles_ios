@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
     public Slider timeBar;
     public Canvas start;
     public Canvas inGame;
@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public bool isFinish = false;
     void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (instance == null)
+            instance = this;
         else
             Destroy(gameObject);
     }
