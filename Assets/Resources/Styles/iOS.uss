@@ -37,6 +37,20 @@
 }
 
 #BackBtn {
-    bottom: 86%; 
+    bottom: 86%;
     left: 93%;
+}
+
+#ScoreText {
+    font-size: 150px;
+    top: 25%;
+    position: absolute;
+}
+
+#Score {
+    font-size: 150px;
+    top: 40%;
+    position: absolute;
+    width: 0;
+    height: 0;
 }

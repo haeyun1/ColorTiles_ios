@@ -9,3 +9,17 @@
 #Title {
     font-size: 150px; 
 }
+
+#ScoreText {
+    font-size: 150px;
+    top: 25%;
+    position: absolute;
+}
+
+#Score {
+    font-size: 150px;
+    top: 40%;
+    position: absolute;
+    width: 0px;
+    height: 0px;
+}
