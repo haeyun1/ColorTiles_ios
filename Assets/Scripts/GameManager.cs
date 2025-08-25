@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private int score;
-    public bool isFinish = false;
+    [SerializeField] private float maxTime = 120f;
+    [SerializeField] private float curTime;
+
+    private Coroutine coroutine;
+    public bool isFinish;
 
     void Awake()
     {
@@ -17,21 +21,19 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    [SerializeField] private float maxTime = 120f;
-
-    [SerializeField] private float curTime;
-
+    // --------------------- Timer ---------------------
     public void StartTimer()
     {
         StopAllCoroutines();
         curTime = maxTime;
         isFinish = false;
-        StartCoroutine(OrderTimer());
+        coroutine = StartCoroutine(OrderTimer());
     }
 
     public void StopTimer()
     {
-        StopCoroutine("OrderTimer");
+        if (coroutine == null) return;
+        StopCoroutine(coroutine);
     }
 
     IEnumerator OrderTimer()
@@ -40,16 +42,12 @@ public class GameManager : MonoBehaviour
         while (curTime > 0)
         {
             curTime -= Time.deltaTime;
-
-            if (curTime <= 0)
-            {
-                curTime = 0;
-                isFinish = true;
-                UIManager.instance.SetState(UIManager.State.End);
-                yield break;
-            }
             yield return null;
         }
+
+        curTime = 0;
+        isFinish = true;
+        UIManager.instance.SetState(UIManager.State.End);
     }
 
     public float GetTime()
@@ -57,11 +55,18 @@ public class GameManager : MonoBehaviour
         return curTime;
     }
 
+    public void SetTime(float time)
+    {
+        curTime += time;
+    }
+
     public float GetMaxTime()
     {
         return maxTime;
     }
+    // -------------------------------------------------
 
+    // --------------------- Score ---------------------
     public string GetScore()
     {
         return score.ToString();
@@ -76,6 +81,7 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
     }
+    // -------------------------------------------------
 
     public void QuitGame()
     {

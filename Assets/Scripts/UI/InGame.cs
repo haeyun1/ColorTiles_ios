@@ -14,7 +14,7 @@ public class InGame : MonoBehaviour, IUIState
     public void Enter()
     {
         gameObject.SetActive(true);
-        uI = GetComponent<UIDocument>();
+        uI = gameObject.GetComponent<UIDocument>();
 
         var root = uI.rootVisualElement;
         homeBtn = root.Q<Button>();
@@ -27,10 +27,12 @@ public class InGame : MonoBehaviour, IUIState
         GameManager.instance.StartTimer();
         UIManager.instance.ShowTile(true);
     }
+
     void OnClick()
     {
         UIManager.instance.SetState(UIManager.State.Title);
     }
+
     void Update()
     {
         score.text = GameManager.instance.GetScore();
@@ -40,7 +42,6 @@ public class InGame : MonoBehaviour, IUIState
     public void Exit()
     {
         gameObject.SetActive(false);
-        UIManager.instance.ShowTile(false);
         GameManager.instance.StopTimer();
     }
 }

@@ -18,6 +18,7 @@ public class Title : MonoBehaviour, IUIState
         popUp = root.Q<VisualElement>("Overlay");
         btns.Add(popUp.Q<VisualElement>().Q<Button>());
         UIManager.instance.Hide(popUp);
+        UIManager.instance.ShowTile(false);
         foreach (var btn in btns)
         {
             btn.clicked += () => OnClick(btn.name);
