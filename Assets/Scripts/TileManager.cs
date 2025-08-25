@@ -13,6 +13,12 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Vector2Int size = new Vector2Int(23, 15);
     [SerializeField] private int objectsPerColor = 20;
 
+    void OnEnable()
+    {
+        RemoveTiles();
+        GenerateTiles();
+    }
+
     public void GenerateTiles()
     {
         cells = new List<Vector3Int>();
