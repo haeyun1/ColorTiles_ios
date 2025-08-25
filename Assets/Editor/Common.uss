@@ -36,6 +36,23 @@ Button.img-btn {
     position: absolute;
 }
 
+.text-btn:hover {
+    background-color: #ffe5e5;
+}
+
+.text-btn:active {
+    background-color: red;
+    color: white;
+}
+
+.img-btn:hover {
+    -unity-background-image-tint-color: #ffe5e5;
+}
+
+.img-btn:active {
+    -unity-background-image-tint-color: red;
+}
+
 .group {
     position: absolute;
     align-items: center;
@@ -76,4 +93,8 @@ ProgressBar {
 .unity-progress-bar__progress {
     background-color: red;
     margin: 0px;
+}
+
+.hidden {
+    display: none;
 }
