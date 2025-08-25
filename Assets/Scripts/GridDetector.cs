@@ -96,6 +96,7 @@ public class GridDetector : MonoBehaviour
                 {
                     if (obj != null)
                     {
+                        obj.GetComponent<Collider2D>().enabled = false;
                         Destroy(obj, markLifetime);
                     }
                 }
@@ -117,7 +118,8 @@ public class GridDetector : MonoBehaviour
         while (currentCell != endCell)
         {
             // 마크 생성
-            Vector3 cellWorldPos = targetGrid.GetCellCenterWorld(new Vector3Int(currentCell.x, currentCell.y, -1));
+            Vector3 cellWorldPos = targetGrid.GetCellCenterWorld(currentCell);
+            cellWorldPos.z = detectionZDepth;
             GameObject m = Instantiate(mark, cellWorldPos, Quaternion.identity, transform);
             Destroy(m, markLifetime);
 
