@@ -6,11 +6,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Slider timeBar;
-    public Canvas start;
-    public Canvas inGame;
-    public Canvas finishGame;
+    [SerializeField] private int score;
     public bool isFinish = false;
+
     void Awake()
     {
         if (instance == null)
@@ -19,38 +17,64 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private float time = 120f;
+    [SerializeField] private float maxTime = 120f;
 
-    private float curTime;
+    [SerializeField] private float curTime;
 
-    public void Timer()
+    public void StartTimer()
     {
         StopAllCoroutines();
-        curTime = time;
+        curTime = maxTime;
         isFinish = false;
         StartCoroutine(OrderTimer());
     }
 
+    public void StopTimer()
+    {
+        StopCoroutine("OrderTimer");
+    }
+
     IEnumerator OrderTimer()
     {
-        curTime = time;
+        curTime = maxTime;
         while (curTime > 0)
         {
             curTime -= Time.deltaTime;
-            timeBar.value = curTime / time;
 
             if (curTime <= 0)
             {
                 curTime = 0;
-                start.gameObject.SetActive(false);
-                inGame.gameObject.SetActive(false);
-                finishGame.gameObject.SetActive(true);
                 isFinish = true;
-                break;
+                UIManager.instance.SetState(UIManager.State.End);
+                yield break;
             }
-
             yield return null;
         }
+    }
+
+    public float GetTime()
+    {
+        return curTime;
+    }
+
+    public float GetMaxTime()
+    {
+        return maxTime;
+    }
+
+    public string GetScore()
+    {
+        return score.ToString();
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
     }
 
     public void QuitGame()
