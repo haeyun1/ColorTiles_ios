@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class GridDetector : MonoBehaviour
 {
-    [SerializeField] public Grid targetGrid;
+    public Grid targetGrid;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float detectionZDepth = -1f;
     [SerializeField] private GameObject mark;
@@ -21,89 +22,106 @@ public class GridDetector : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mouseScreenPos = Input.mousePosition;
-            mouseScreenPos.z = Mathf.Abs(mainCamera.transform.position.z + detectionZDepth);
-            Vector3 worldClickPosition = mainCamera.ScreenToWorldPoint(mouseScreenPos);
+            OnClick();
+        }
+    }
 
-            // 클릭된 월드 좌표를 그리드 셀 좌표로 변환
-            Vector3Int clickedCell = targetGrid.WorldToCell(new Vector3(worldClickPosition.x, worldClickPosition.y, detectionZDepth));
-            // 클릭된 셀의 월드 중심 좌표 (마크 경로의 시작점)
-            Vector3 clickCellCenterWorld = targetGrid.GetCellCenterWorld(clickedCell);
-            Vector2 origin = new(clickCellCenterWorld.x, clickCellCenterWorld.y); // 레이캐스트 원점
+    void OnClick()
+    {
+        Vector3 mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = Mathf.Abs(mainCamera.transform.position.z + detectionZDepth);
+        Vector3 worldClickPosition = mainCamera.ScreenToWorldPoint(mouseScreenPos);
+        Vector3 clickedPos = targetGrid.GetCellCenterWorld(targetGrid.WorldToCell(new Vector3(worldClickPosition.x, worldClickPosition.y, detectionZDepth)));
+        ProcessTileMatch(clickedPos);
+    }
 
-            if (Physics2D.OverlapPoint(origin) != null)
+    void ProcessTileMatch(Vector3 clickedPos)
+    {
+        Vector2 origin = new(clickedPos.x, clickedPos.y); // 레이캐스트 원점
+        if (Physics2D.OverlapPoint(origin) != null)
+        {
+            // Debug.Log("클릭한 칸이 비어있지 않습니다.");
+            return;
+        }
+
+        List<GameObject> tiles = FindTiles(origin);
+        if (tiles.Count < 2)
+        {
+            // Debug.Log("타일이 하나 이하입니다. 매치되는 타일이 없습니다.");
+            GameManager.instance.SetTime(-10f);
+            return;
+        }
+
+        Dictionary<string, List<GameObject>> groups = GroupTiles(tiles);
+        List<GameObject> tilesToDestroy = CountMatchedTiles(groups, clickedPos);
+        if (tilesToDestroy.Count == 0)
+        {
+            // Debug.Log("매치되는 타일이 존재하지 않습니다.");
+            GameManager.instance.SetTime(-10f);
+            return;
+        }
+        else
+        {
+            RemoveTiles(tilesToDestroy);
+            GameManager.instance.AddScore(tilesToDestroy.Count);
+        }
+    }
+
+    List<GameObject> FindTiles(Vector2 origin) // 타일 탐색
+    {
+        List<GameObject> tiles = new();
+
+        foreach (Vector2 dir in directions)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(origin, dir);
+            if (hit.collider != null)
             {
-                // Debug.Log("클릭한 칸이 비어있지 않습니다.");
-                return;
-            }
-
-            List<GameObject> hitObjects = new List<GameObject>();
-
-            foreach (Vector2 dir in directions)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(origin, dir);
-                if (hit.collider != null)
-                {
-                    hitObjects.Add(hit.collider.gameObject);
-                }
-            }
-
-            // 4개 중 아무것도 없으면 종료 (매칭될 타일이 2개 이상 필요)
-            if (hitObjects.Count < 2)
-            {
-                // Debug.Log("타일이 하나 이하입니다. 매치되는 타일이 없습니다.");
-                return;
-            }
-
-            // tag 기준으로 그룹화 (tag가 같으면 같은 종류)
-            Dictionary<string, List<GameObject>> groups = new();
-            foreach (GameObject obj in hitObjects)
-            {
-                if (!groups.ContainsKey(obj.tag))
-                    groups[obj.tag] = new List<GameObject>();
-                groups[obj.tag].Add(obj);
-            }
-
-            // 두 개 이상 모인 그룹 찾아서 처리
-            int destroyedCount = 0;
-            List<GameObject> objectsToDestroy = new();
-
-            foreach (var pair in groups)
-            {
-                if (pair.Value.Count >= 2) // 같은 종류의 타일이 2개 이상 발견되면
-                {
-                    foreach (GameObject obj in pair.Value)
-                    {
-                        Vector3 objCellCenterWorld = targetGrid.GetCellCenterWorld(targetGrid.WorldToCell(obj.transform.position));
-
-                        StartCoroutine(MakeMarkGridPath(clickCellCenterWorld, objCellCenterWorld));
-                        objectsToDestroy.Add(obj); // 파괴할 오브젝트 리스트에 추가
-                        destroyedCount++;
-                    }
-                }
-            }
-
-            // 매치되는 타일이 없었을 경우
-            if (destroyedCount == 0)
-            {
-                // Debug.Log("매치되는 타일이 존재하지 않습니다.");
-                GameManager.instance.SetTime(-10f);
-                return;
-            }
-            else
-            {
-                foreach (GameObject obj in objectsToDestroy)
-                {
-                    if (obj != null)
-                    {
-                        obj.GetComponent<Collider2D>().enabled = false;
-                        Destroy(obj, markLifetime);
-                    }
-                }
-                GameManager.instance.AddScore(destroyedCount);
-                // Debug.Log($"점수 +{destroyedCount}");
+                tiles.Add(hit.collider.gameObject);
             }
         }
+
+
+        return tiles;
+    }
+
+    Dictionary<string, List<GameObject>> GroupTiles(List<GameObject> tiles) // 타일 그룹화
+    {
+        Dictionary<string, List<GameObject>> groups = new();
+        foreach (GameObject tile in tiles)
+        {
+            if (!groups.ContainsKey(tile.tag))
+                groups[tile.tag] = new List<GameObject>();
+            groups[tile.tag].Add(tile);
+        }
+        return groups;
+    }
+
+    void RemoveTiles(List<GameObject> tiles)
+    {
+        foreach (GameObject tile in tiles)
+        {
+            tile.GetComponent<Collider2D>().enabled = false;
+            Destroy(tile, markLifetime);
+        }
+    }
+
+    List<GameObject> CountMatchedTiles(Dictionary<string, List<GameObject>> groups, Vector3 clickedPos)
+    {
+        List<GameObject> objsToDestroy = new();
+        foreach (var pair in groups)
+        {
+            if (pair.Value.Count >= 2) // 같은 종류의 타일이 2개 이상 발견되면
+            {
+                foreach (GameObject obj in pair.Value)
+                {
+                    Vector3 objPos = targetGrid.GetCellCenterWorld(targetGrid.WorldToCell(obj.transform.position));
+
+                    StartCoroutine(MakeMarkGridPath(clickedPos, objPos));
+                    objsToDestroy.Add(obj); // 파괴할 오브젝트 리스트에 추가
+                }
+            }
+        }
+        return objsToDestroy;
     }
 
     IEnumerator MakeMarkGridPath(Vector3 startWorldPos, Vector3 endWorldPos)
